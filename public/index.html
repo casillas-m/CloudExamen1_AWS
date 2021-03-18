@@ -45,7 +45,12 @@
                     // Ocurrió un error
                     document.querySelector("#resultados").innerHTML="ERROR"
                 } else {
-                    document.querySelector("#resultados").innerHTML=xhr.response
+                    document.querySelector("#resultados").innerHTML=`
+                    <ul>
+                        <li>Tono emocional: ${JSON.parse(xhr.response)[0].tone_name}</li>
+                        <li>Tono del lenguaje: ${JSON.parse(xhr.response)[1].tone_name}</li>
+                    </ul>
+                    `
                 }
             }
 
