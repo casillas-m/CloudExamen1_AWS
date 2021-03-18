@@ -35,7 +35,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         function analizar() {
-            document.querySelector("#resultados").innerHTML="Hola"
+            let texto = document.querySelector("#texto").value
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', "http://martin-examen1.mybluemix.net/");
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({texto}));
+            xhr.onload = function () {
+                if (xhr.status != 200) {
+                    // Ocurrió un error
+                    document.querySelector("#resultados").innerHTML="ERROR"
+                } else {
+                    document.querySelector("#resultados").innerHTML=xhr.response
+                }
+            }
+
         }
     </script>
 </body>
